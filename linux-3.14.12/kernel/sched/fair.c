@@ -213,8 +213,8 @@ static void __update_inv_weight(struct load_weight *lw)
  */
 static u64 __calc_delta(u64 delta_exec, unsigned long weight, struct load_weight *lw)
 {
-  //fact = 1024(D) = 10000000000(B)..//
-  //WMULT_SHIFT = 32..//
+  //case (weight == NICE_0_LOAD) ? fact = 1024(D) = 10000000000(B)..//
+  //WMULT_SHIFT = 32. It's DEFINED..//
 	u64 fact = scale_load_down(weight);
 	int shift = WMULT_SHIFT;
 
