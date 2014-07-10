@@ -638,8 +638,8 @@ static inline u64 calc_delta_fair(u64 delta, struct sched_entity *se)
  */
 static u64 __sched_period(unsigned long nr_running)
 {
-	u64 period = sysctl_sched_latency;
-	unsigned long nr_latency = sched_nr_latency;
+	u64 period = sysctl_sched_latency;  //(= 6000000ULL)
+	unsigned long nr_latency = sched_nr_latency; //(=8)
 
 	if (unlikely(nr_running > nr_latency)) {
 		period = sysctl_sched_min_granularity;
