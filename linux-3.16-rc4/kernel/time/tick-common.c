@@ -87,7 +87,8 @@ static void tick_periodic(int cpu)
 		write_sequnlock(&jiffies_lock);
 		update_wall_time();
 	}
-
+  
+  /* 업데이트 프로세스 타임 */
 	update_process_times(user_mode(get_irq_regs()));
 	profile_tick(CPU_PROFILING);
 }

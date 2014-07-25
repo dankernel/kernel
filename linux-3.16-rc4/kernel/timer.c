@@ -1386,7 +1386,7 @@ void update_process_times(int user_tick)
 	if (in_irq())
 		irq_work_run();
 #endif
-	scheduler_tick();
+	scheduler_tick();       /* 스케줄러 틱! */
 	run_posix_cpu_timers(p);
 }
 
