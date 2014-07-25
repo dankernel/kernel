@@ -1063,7 +1063,7 @@ struct pipe_inode_info;
 struct uts_namespace;
 
 struct load_weight {
-	unsigned long weight;
+	unsigned long weight; /* prio_to_weight[].. */
 	u32 inv_weight;
 };
 
