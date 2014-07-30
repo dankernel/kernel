@@ -1379,6 +1379,7 @@ void update_process_times(int user_tick)
 	int cpu = smp_processor_id();
 
 	/* Note: this timer irq context must be accounted for as well. */
+  /* 실제 프로세서 시간 갱신 작업을 함, 진동주기 전체동안 발생 한 것으로 인식  */
 	account_process_tick(p, user_tick);
 	run_local_timers();
 	rcu_check_callbacks(cpu, user_tick);

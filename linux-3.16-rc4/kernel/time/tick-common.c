@@ -83,6 +83,7 @@ static void tick_periodic(int cpu)
 		/* Keep track of the next tick event */
 		tick_next_period = ktime_add(tick_next_period, tick_period);
 
+    /* 지피값을 증가 시키는 부분 */
 		do_timer(1);
 		write_sequnlock(&jiffies_lock);
 		update_wall_time();
