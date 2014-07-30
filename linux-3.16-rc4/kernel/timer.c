@@ -1373,20 +1373,29 @@ unsigned long get_next_timer_interrupt(unsigned long now)
  * Called from the timer interrupt handler to charge one tick to the current
  * process.  user_tick is 1 if the tick is user time, 0 for system.
  */
+
+/*
+ * 1/HZ동안 실햄됨. 초당 100 ~ 1000번 정도 발생 함.
+ */
 void update_process_times(int user_tick)
 {
 	struct task_struct *p = current;
 	int cpu = smp_processor_id();
 
 	/* Note: this timer irq context must be accounted for as well. */
-  /* 실제 프로세서 시간 갱신 작업을 함, 진동주기 전체동안 발생 한 것으로 인식  */
+  /* 실제 프로세서 시간 갱신 작업을 함, 진동주기 전체동안 발생 한 것으로 인식 */
 	account_process_tick(p, user_tick);
+
+  /* softirq 발생. */
 	run_local_timers();
 	rcu_check_callbacks(cpu, user_tick);
+
 #ifdef CONFIG_IRQ_WORK
 	if (in_irq())
 		irq_work_run();
 #endif
+
+  /* 타임슬라이스 값을 줄이고, 균형 조절. need_sched플래그 조정. */
 	scheduler_tick();       /* 스케줄러 틱! */
 	run_posix_cpu_timers(p);
 }
