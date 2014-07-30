@@ -1376,6 +1376,7 @@ unsigned long get_next_timer_interrupt(unsigned long now)
 
 /*
  * 1/HZ동안 실햄됨. 초당 100 ~ 1000번 정도 발생 함.
+ * 1 : 유저모드 틱, 0 : 시스템모드 틱
  */
 void update_process_times(int user_tick)
 {
