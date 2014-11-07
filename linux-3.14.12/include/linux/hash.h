@@ -56,10 +56,10 @@ static __always_inline u64 hash_64(u64 val, unsigned int bits)
 	return hash >> (64 - bits);
 }
 
-static inline u32 hash_32(u32 val, unsigned int bits)
+static inline unsigned int hash_32(u32 val, unsigned int bits)
 {
 	/* On some cpus multiply is faster, on others gcc will do shifts */
-	u32 hash = val * GOLDEN_RATIO_PRIME_32;
+	unsigned int hash = val * GOLDEN_RATIO_PRIME_32;
 
 	/* High bits are more random, so use them. */
 	return hash >> (32 - bits);
